@@ -1,14 +1,15 @@
-package org.example;
+package org.example.enums;
 
 public enum StudyProfile {
     MEDICINE("Медицина"),
     ENGINEERING("Технические специальности"),
     PHILOSOPHY("Философия"),
-    MATH("Математический уклон"),
-    PHYSICS("Физические науки");
+    MATHEMATICS("Математический уклон"),
+    PHYSICS("Физические науки"),
+    LINGUISTICS("Лингвистика");
 
-    private String profileName;
-    StudyProfile(String profileName) {
+    private final String profileName;
+    private StudyProfile(String profileName) {
         this.profileName = profileName;
     }
 
@@ -16,9 +17,6 @@ public enum StudyProfile {
         return profileName;
     }
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
-    }
 
     @Override
     public String toString() {
