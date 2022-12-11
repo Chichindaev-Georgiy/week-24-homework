@@ -26,6 +26,12 @@
             <artifactId>apache-poi-ooxml</artifactId>
             <version>62</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.netbeans.external/com-google-gson -->
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>com-google-gson</artifactId>
+            <version>RELEASE113</version>
+        </dependency>
 
     </dependencies>
     <properties>

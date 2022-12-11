@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ReadSpreadSheet {
-    private ReadSpreadSheet() {
+public class XlsReader {
+    private XlsReader() {
     }
     
     public static List<University> readXlsUniversities(String filePath) throws IOException {
