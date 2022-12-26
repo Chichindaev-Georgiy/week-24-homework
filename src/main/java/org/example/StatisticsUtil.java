@@ -4,13 +4,17 @@ import org.example.enums.StudyProfile;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class StatisticsUtil {
+    private static final Logger logger = Logger.getLogger(StatisticsUtil.class.getName());
     private StatisticsUtil() {
     }
 
     public static List<Statistics> getStatistics(List<Student> students, List<University> universities) {
+        logger.log(Level.INFO, "Starting generating statistics...");
         List<Statistics> statisticsList = new ArrayList<>();
         Set<StudyProfile> profiles = universities.stream().
                 map(University::getMainProfile).
@@ -41,6 +45,8 @@ public class StatisticsUtil {
                     BigDecimal.valueOf(value).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue()
             ));
         });
+
+        logger.log(Level.INFO, String.format("Statistics done with %d statistical objects.", statisticsList.size()));
 
         return statisticsList;
     }

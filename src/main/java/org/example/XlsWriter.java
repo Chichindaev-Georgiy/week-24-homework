@@ -8,17 +8,21 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XlsWriter {
+    private static final Logger logger = Logger.getLogger(XlsWriter.class.getName());
     private XlsWriter() {
     }
 
-    public static void writeStats(List<Statistics> statisticsList, String fileName) throws IOException {
+    public static void writeStats(List<Statistics> statisticsList, String fileName) {
+
         XSSFWorkbook workbook = new XSSFWorkbook();
-        FileOutputStream fileOut = new FileOutputStream(fileName);
         XSSFSheet sheet1 = workbook.createSheet("Статистика");
 
         XSSFFont headerFont = workbook.createFont();
@@ -69,8 +73,15 @@ public class XlsWriter {
             universitiesListCell.setCellValue(statistics.universitiesListToString());
             sheet1.autoSizeColumn(cellNumber);
         }
-
-        workbook.write(fileOut);
-        fileOut.close();
+        FileOutputStream fileOut = null;
+        logger.log(Level.INFO, "Start writing file...");
+        try {
+            fileOut = new FileOutputStream(fileName);
+            workbook.write(fileOut);
+            fileOut.close();
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File writing error", e);
+        }
+        logger.log(Level.INFO, "File has been written successfully.");
     }
 }
